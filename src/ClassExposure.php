@@ -35,6 +35,10 @@ class ClassExposure
             return false;
         }
 
+        if ((new \ReflectionClass($class))->isAbstract()) {
+            return false;
+        }
+
         if ($this->matchesAncestor($class, (array) $this->config()->get('denied_classes'))) {
             return false;
         }
