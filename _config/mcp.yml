@@ -1,0 +1,44 @@
+---
+Name: cmsmcp-config
+---
+SilverStripe\Core\Injector\Injector:
+  Icecaster\CmsMcp\MCP\ToolRegistry:
+    properties:
+      Tools:
+        - '%$Icecaster\CmsMcp\Tools\ListClassesTool'
+        - '%$Icecaster\CmsMcp\Tools\SearchRecordsTool'
+        - '%$Icecaster\CmsMcp\Tools\GetRecordTool'
+        - '%$Icecaster\CmsMcp\Tools\ListFieldsTool'
+        - '%$Icecaster\CmsMcp\Tools\UpdateRecordTool'
+        - '%$Icecaster\CmsMcp\Tools\UploadFileTool'
+        - '%$Icecaster\CmsMcp\Tools\PublishRecordTool'
+        - '%$Icecaster\CmsMcp\Tools\UnpublishRecordTool'
+        - '%$Icecaster\CmsMcp\Tools\VersionHistoryTool'
+        - '%$Icecaster\CmsMcp\Tools\RollbackRecordTool'
+        - '%$Icecaster\CmsMcp\Tools\RecordStatusTool'
+
+Icecaster\CmsMcp\ClassExposure:
+  # DataObject classes (and their subclasses) that may be exposed via MCP tools.
+  # Add your own project classes here, or apply the Icecaster\CmsMcp\Extensions\MCPExposableExtension
+  # extension to a class instead of listing it here.
+  allowed_classes:
+    - SilverStripe\CMS\Model\SiteTree
+    - SilverStripe\Assets\File
+  # Classes (and their subclasses) that must never be exposed, regardless of allowed_classes
+  # or the MCPExposableExtension marker. Deny always wins.
+  denied_classes:
+    - SilverStripe\Security\Member
+    - SilverStripe\Security\Group
+    - SilverStripe\Security\Permission
+    - SilverStripe\Security\PermissionRole
+    - SilverStripe\Security\PermissionRoleCode
+    - SilverStripe\Security\RememberLoginHash
+    - SilverStripe\Security\LoginAttempt
+    - SilverStripe\Security\SecurityToken
+    - Icecaster\CmsMcp\Model\MCPAccessToken
+  # Field names hidden from list_fields/get_record/update_record on every exposed class
+  global_denied_fields:
+    - ID
+    - ClassName
+    - Version
+    - RecordClassName
