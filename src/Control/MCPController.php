@@ -46,11 +46,11 @@ class MCPController extends Controller
     {
         $member = $this->authenticate($request);
         if (!$member) {
-            return $this->httpError(401, 'invalid_token', 'Missing or invalid bearer token');
+            return $this->authError(401, 'invalid_token', 'Missing or invalid bearer token');
         }
 
         if (!Permission::checkMember($member, CMSMCPPermissionProvider::ACCESS)) {
-            return $this->httpError(403, 'insufficient_scope', 'Member lacks the CMS_MCP_ACCESS permission');
+            return $this->authError(403, 'insufficient_scope', 'Member lacks the CMS_MCP_ACCESS permission');
         }
 
         $payload = json_decode($request->getBody(), true);
@@ -176,7 +176,7 @@ class MCPController extends Controller
         return $response;
     }
 
-    private function httpError(int $statusCode, string $error, string $description): HTTPResponse
+    private function authError(int $statusCode, string $error, string $description): HTTPResponse
     {
         $response = $this->jsonResponse($statusCode, json_encode([
             'error' => $error,
