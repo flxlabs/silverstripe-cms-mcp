@@ -1,8 +1,10 @@
 <?php
 
-namespace Icecaster\CmsMcp\Model;
+namespace FLXLabs\CmsMcp\Model;
 
-use SilverStripe\Control\Controller;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Core\Validation\ValidationResult;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\DatetimeField;
 use SilverStripe\Forms\FieldList;
@@ -80,7 +82,7 @@ class MCPAccessToken extends DataObject
             TextField::create('MemberEmail', 'Member email')
                 ->setDescription(
                     'The SilverStripe member this token acts as. All MCP tool calls will be permission-checked '
-                    . 'against this member exactly as if they were editing in the CMS.'
+                        . 'against this member exactly as if they were editing in the CMS.'
                 ),
             DatetimeField::create('Expires', 'Expires (optional)'),
             CheckboxField::create('Revoked', 'Revoked'),
@@ -99,10 +101,10 @@ class MCPAccessToken extends DataObject
             $fields->unshift(LiteralField::create(
                 'NewTokenWarning',
                 '<div class="alert alert-warning">'
-                . '<strong>Copy this token now — it will not be shown again:</strong>'
-                . '<pre style="user-select:all;white-space:normal;word-break:break-all;margin-top:8px;">'
-                . htmlspecialchars($rawToken)
-                . '</pre></div>'
+                    . '<strong>Copy this token now — it will not be shown again:</strong>'
+                    . '<pre style="user-select:all;white-space:normal;word-break:break-all;margin-top:8px;">'
+                    . htmlspecialchars($rawToken)
+                    . '</pre></div>'
             ));
             $this->clearSessionRawToken();
         }
@@ -110,7 +112,7 @@ class MCPAccessToken extends DataObject
         return $fields;
     }
 
-    public function validate()
+    public function validate(): ValidationResult
     {
         $result = parent::validate();
 
@@ -197,21 +199,17 @@ class MCPAccessToken extends DataObject
 
     private function getSessionRawToken(): ?string
     {
-        $request = Controller::has_curr() ? Controller::curr()->getRequest() : null;
-        if (!$request) {
-            return null;
-        }
-        return $request->getSession()->get("MCPAccessToken.RawToken.{$this->ID}");
+        return Injector::inst()->get(HTTPRequest::class)->getSession()->get("MCPAccessToken.RawToken.{$this->ID}");
     }
 
     private function setSessionRawToken(string $raw): void
     {
-        Controller::curr()->getRequest()->getSession()->set("MCPAccessToken.RawToken.{$this->ID}", $raw);
+        Injector::inst()->get(HTTPRequest::class)->getSession()->set("MCPAccessToken.RawToken.{$this->ID}", $raw);
     }
 
     private function clearSessionRawToken(): void
     {
-        Controller::curr()->getRequest()->getSession()->clear("MCPAccessToken.RawToken.{$this->ID}");
+        Injector::inst()->get(HTTPRequest::class)->getSession()->clear("MCPAccessToken.RawToken.{$this->ID}");
     }
 
     public function canView($member = null)

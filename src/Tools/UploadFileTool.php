@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp\Tools;
+namespace FLXLabs\CmsMcp\Tools;
 
 use SilverStripe\Assets\Upload;
 use SilverStripe\Assets\Upload_Validator;
@@ -8,9 +8,9 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\FieldIntrospector;
-use Icecaster\CmsMcp\MCP\AbstractTool;
-use Icecaster\CmsMcp\MCP\ToolException;
+use FLXLabs\CmsMcp\FieldIntrospector;
+use FLXLabs\CmsMcp\MCP\AbstractTool;
+use FLXLabs\CmsMcp\MCP\ToolException;
 
 class UploadFileTool extends AbstractTool
 {

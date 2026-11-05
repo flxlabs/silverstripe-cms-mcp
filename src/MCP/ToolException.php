@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp\MCP;
+namespace FLXLabs\CmsMcp\MCP;
 
 /**
  * Thrown by a Tool to signal a user-facing failure. Caught by ToolRegistry::callTool()
@@ -8,6 +8,4 @@ namespace Icecaster\CmsMcp\MCP;
  * per the MCP spec, tool execution failures are reported *in* the result so the LLM can
  * see and react to them.
  */
-class ToolException extends \RuntimeException
-{
-}
+class ToolException extends \RuntimeException {}

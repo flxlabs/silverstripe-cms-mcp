@@ -1,11 +1,11 @@
 <?php
 
-namespace Icecaster\CmsMcp\Tools;
+namespace FLXLabs\CmsMcp\Tools;
 
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\FieldIntrospector;
-use Icecaster\CmsMcp\MCP\AbstractTool;
+use FLXLabs\CmsMcp\FieldIntrospector;
+use FLXLabs\CmsMcp\MCP\AbstractTool;
 
 class GetRecordTool extends AbstractTool
 {

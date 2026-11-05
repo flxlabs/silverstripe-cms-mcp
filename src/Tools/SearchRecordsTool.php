@@ -1,12 +1,12 @@
 <?php
 
-namespace Icecaster\CmsMcp\Tools;
+namespace FLXLabs\CmsMcp\Tools;
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\MCP\AbstractTool;
-use Icecaster\CmsMcp\MCP\ToolException;
+use FLXLabs\CmsMcp\MCP\AbstractTool;
+use FLXLabs\CmsMcp\MCP\ToolException;
 
 class SearchRecordsTool extends AbstractTool
 {
@@ -52,7 +52,8 @@ class SearchRecordsTool extends AbstractTool
         $query = is_string($arguments['query'] ?? null) ? $arguments['query'] : null;
         $limit = min(self::MAX_LIMIT, max(1, (int) ($arguments['limit'] ?? 20)));
 
-        if (!$this->classExposure()->isFieldExposable($class, $field)
+        if (
+            !$this->classExposure()->isFieldExposable($class, $field)
             || !DataObject::getSchema()->fieldSpec($class, $field)
         ) {
             throw new ToolException("\"$field\" is not a searchable field on $class");

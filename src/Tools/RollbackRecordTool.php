@@ -1,11 +1,11 @@
 <?php
 
-namespace Icecaster\CmsMcp\Tools;
+namespace FLXLabs\CmsMcp\Tools;
 
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\MCP\AbstractTool;
-use Icecaster\CmsMcp\MCP\ToolException;
+use FLXLabs\CmsMcp\MCP\AbstractTool;
+use FLXLabs\CmsMcp\MCP\ToolException;
 
 class RollbackRecordTool extends AbstractTool
 {

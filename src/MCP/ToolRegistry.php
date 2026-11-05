@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp\MCP;
+namespace FLXLabs\CmsMcp\MCP;
 
 use InvalidArgumentException;
 use SilverStripe\Core\Injector\Injectable;

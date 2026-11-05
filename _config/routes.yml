@@ -3,4 +3,4 @@ Name: cmsmcp-routes
 ---
 SilverStripe\Control\Director:
   rules:
-    'mcp': 'Icecaster\CmsMcp\Control\MCPController'
+    "mcp": 'FLXLabs\CmsMcp\Control\MCPController'

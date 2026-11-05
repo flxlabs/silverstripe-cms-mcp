@@ -1,4 +1,6 @@
-# icecaster/silverstripe-cms-mcp
+# flxlabs/silverstripe-cms-mcp
+
+This a fork of [icecaster/silverstripe-cms-mcp](https://github.com/icecaster/silverstripe-cms-mcp).
 
 Exposes SilverStripe CMS content to AI agents over the [Model Context Protocol](https://modelcontextprotocol.io)
 (MCP): reading and editing fields, uploading files, and driving the draft/publish
@@ -23,8 +25,8 @@ CMS user.
 
 ## Installation
 
-```
-composer require icecaster/silverstripe-cms-mcp
+```bash
+composer require flxlabs/silverstripe-cms-mcp
 vendor/bin/sake dev/build flush=1
 ```
 
@@ -41,31 +43,31 @@ vendor/bin/sake dev/build flush=1
 
 Point your MCP client at:
 
-```
+```txt
 https://your-site.example/mcp
 Authorization: Bearer mcp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ## Exposing your own classes
 
-Either add the class (or an ancestor) to `Icecaster\CmsMcp\ClassExposure.allowed_classes`
+Either add the class (or an ancestor) to `FLXLabs\CmsMcp\ClassExposure.allowed_classes`
 in YAML config, or apply the marker extension directly:
 
 ```yml
 App\Model\Product:
   extensions:
-    - Icecaster\CmsMcp\Extensions\MCPExposableExtension
+    - FLXLabs\CmsMcp\Extensions\MCPExposableExtension
 ```
 
 Fields are auto-discovered from `$db` (Varchar/Text/HTMLText/Int/Float/Boolean/Date/
 Datetime are editable via `update_record`; `has_one` relations to `File`/`Image` are
 settable via `upload_file`). Hide individual fields per-class with
-`Icecaster\CmsMcp\ClassExposure.denied_fields`.
+`FLXLabs\CmsMcp\ClassExposure.denied_fields`.
 
 ## Tools
 
 | Tool | Purpose |
-|---|---|
+| --- | --- |
 | `list_classes` | Discover exposed classes |
 | `list_fields` | Discover a class's editable + file fields |
 | `search_records` | Find records by a substring match on a field |
@@ -88,4 +90,4 @@ In the consuming project's `composer.json`:
 ]
 ```
 
-then `composer require icecaster/silverstripe-cms-mcp:dev-main`.
+then `composer require flxlabs/silverstripe-cms-mcp:dev-main`.

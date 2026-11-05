@@ -1,12 +1,12 @@
 <?php
 
-namespace Icecaster\CmsMcp;
+namespace FLXLabs\CmsMcp;
 
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\ORM\DataObject;
-use Icecaster\CmsMcp\Extensions\MCPExposableExtension;
+use FLXLabs\CmsMcp\Extensions\MCPExposableExtension;
 
 /**
  * Decides which DataObject classes may be read/written through MCP tools.

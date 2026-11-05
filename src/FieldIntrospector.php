@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp;
+namespace FLXLabs\CmsMcp;
 
 use SilverStripe\Assets\File;
 use SilverStripe\Core\Injector\Injectable;

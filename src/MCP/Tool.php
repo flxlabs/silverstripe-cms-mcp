@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp\MCP;
+namespace FLXLabs\CmsMcp\MCP;
 
 use SilverStripe\Security\Member;
 

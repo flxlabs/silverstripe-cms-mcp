@@ -1,12 +1,12 @@
 <?php
 
-namespace Icecaster\CmsMcp\Tools;
+namespace FLXLabs\CmsMcp\Tools;
 
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\FieldIntrospector;
-use Icecaster\CmsMcp\MCP\AbstractTool;
-use Icecaster\CmsMcp\MCP\ToolException;
+use FLXLabs\CmsMcp\FieldIntrospector;
+use FLXLabs\CmsMcp\MCP\AbstractTool;
+use FLXLabs\CmsMcp\MCP\ToolException;
 
 class UpdateRecordTool extends AbstractTool
 {
@@ -57,7 +57,7 @@ class UpdateRecordTool extends AbstractTool
         if ($invalid) {
             throw new ToolException(
                 'Not editable via update_record: ' . implode(', ', $invalid)
-                . '. Call list_fields to see valid fields.'
+                    . '. Call list_fields to see valid fields.'
             );
         }
 

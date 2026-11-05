@@ -1,11 +1,11 @@
 <?php
 
-namespace Icecaster\CmsMcp\Tools;
+namespace FLXLabs\CmsMcp\Tools;
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\MCP\AbstractTool;
+use FLXLabs\CmsMcp\MCP\AbstractTool;
 
 class ListClassesTool extends AbstractTool
 {

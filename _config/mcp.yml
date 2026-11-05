@@ -2,24 +2,24 @@
 Name: cmsmcp-config
 ---
 SilverStripe\Core\Injector\Injector:
-  Icecaster\CmsMcp\MCP\ToolRegistry:
+  FLXLabs\CmsMcp\MCP\ToolRegistry:
     properties:
       Tools:
-        - '%$Icecaster\CmsMcp\Tools\ListClassesTool'
-        - '%$Icecaster\CmsMcp\Tools\SearchRecordsTool'
-        - '%$Icecaster\CmsMcp\Tools\GetRecordTool'
-        - '%$Icecaster\CmsMcp\Tools\ListFieldsTool'
-        - '%$Icecaster\CmsMcp\Tools\UpdateRecordTool'
-        - '%$Icecaster\CmsMcp\Tools\UploadFileTool'
-        - '%$Icecaster\CmsMcp\Tools\PublishRecordTool'
-        - '%$Icecaster\CmsMcp\Tools\UnpublishRecordTool'
-        - '%$Icecaster\CmsMcp\Tools\VersionHistoryTool'
-        - '%$Icecaster\CmsMcp\Tools\RollbackRecordTool'
-        - '%$Icecaster\CmsMcp\Tools\RecordStatusTool'
+        - '%$FLXLabs\CmsMcp\Tools\ListClassesTool'
+        - '%$FLXLabs\CmsMcp\Tools\SearchRecordsTool'
+        - '%$FLXLabs\CmsMcp\Tools\GetRecordTool'
+        - '%$FLXLabs\CmsMcp\Tools\ListFieldsTool'
+        - '%$FLXLabs\CmsMcp\Tools\UpdateRecordTool'
+        - '%$FLXLabs\CmsMcp\Tools\UploadFileTool'
+        - '%$FLXLabs\CmsMcp\Tools\PublishRecordTool'
+        - '%$FLXLabs\CmsMcp\Tools\UnpublishRecordTool'
+        - '%$FLXLabs\CmsMcp\Tools\VersionHistoryTool'
+        - '%$FLXLabs\CmsMcp\Tools\RollbackRecordTool'
+        - '%$FLXLabs\CmsMcp\Tools\RecordStatusTool'
 
-Icecaster\CmsMcp\ClassExposure:
+FLXLabs\CmsMcp\ClassExposure:
   # DataObject classes (and their subclasses) that may be exposed via MCP tools.
-  # Add your own project classes here, or apply the Icecaster\CmsMcp\Extensions\MCPExposableExtension
+  # Add your own project classes here, or apply the FLXLabs\CmsMcp\Extensions\MCPExposableExtension
   # extension to a class instead of listing it here.
   allowed_classes:
     - SilverStripe\CMS\Model\SiteTree
@@ -35,7 +35,7 @@ Icecaster\CmsMcp\ClassExposure:
     - SilverStripe\Security\RememberLoginHash
     - SilverStripe\Security\LoginAttempt
     - SilverStripe\Security\SecurityToken
-    - Icecaster\CmsMcp\Model\MCPAccessToken
+    - FLXLabs\CmsMcp\Model\MCPAccessToken
   # Field names hidden from list_fields/get_record/update_record on every exposed class
   global_denied_fields:
     - ID

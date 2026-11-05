@@ -1,9 +1,9 @@
 <?php
 
-namespace Icecaster\CmsMcp\Admin;
+namespace FLXLabs\CmsMcp\Admin;
 
 use SilverStripe\Admin\ModelAdmin;
-use Icecaster\CmsMcp\Model\MCPAccessToken;
+use FLXLabs\CmsMcp\Model\MCPAccessToken;
 
 class MCPTokenAdmin extends ModelAdmin
 {

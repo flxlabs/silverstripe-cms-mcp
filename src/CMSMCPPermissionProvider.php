@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp;
+namespace FLXLabs\CmsMcp;
 
 use SilverStripe\Security\PermissionProvider;
 

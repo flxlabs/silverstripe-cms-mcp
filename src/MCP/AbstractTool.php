@@ -1,13 +1,16 @@
 <?php
 
-namespace Icecaster\CmsMcp\MCP;
+namespace FLXLabs\CmsMcp\MCP;
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
-use Icecaster\CmsMcp\ClassExposure;
+use FLXLabs\CmsMcp\ClassExposure;
+use SilverStripe\Core\Config\Configurable;
 
 abstract class AbstractTool implements Tool
 {
+    use Configurable;
+
     protected function classExposure(): ClassExposure
     {
         return ClassExposure::singleton();

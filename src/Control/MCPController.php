@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp\Control;
+namespace FLXLabs\CmsMcp\Control;
 
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
@@ -8,10 +8,10 @@ use SilverStripe\Control\HTTPResponse;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
 use SilverStripe\Versioned\Versioned;
-use Icecaster\CmsMcp\CMSMCPPermissionProvider;
-use Icecaster\CmsMcp\MCP\JsonRpc;
-use Icecaster\CmsMcp\MCP\ToolRegistry;
-use Icecaster\CmsMcp\Model\MCPAccessToken;
+use FLXLabs\CmsMcp\CMSMCPPermissionProvider;
+use FLXLabs\CmsMcp\MCP\JsonRpc;
+use FLXLabs\CmsMcp\MCP\ToolRegistry;
+use FLXLabs\CmsMcp\Model\MCPAccessToken;
 use Throwable;
 
 /**

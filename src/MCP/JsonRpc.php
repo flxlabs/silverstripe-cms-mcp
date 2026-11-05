@@ -1,6 +1,6 @@
 <?php
 
-namespace Icecaster\CmsMcp\MCP;
+namespace FLXLabs\CmsMcp\MCP;
 
 /**
  * JSON-RPC 2.0 envelope helpers. See https://www.jsonrpc.org/specification
