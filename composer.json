@@ -26,11 +26,6 @@
         "silverstripe/versioned": "^3",
         "silverstripe/assets": "^3"
     },
-    "extra": {
-        "expose": [
-            "client-config"
-        ]
-    },
     "autoload": {
         "psr-4": {
             "FLXLabs\\CmsMcp\\": "src/"

@@ -16,6 +16,14 @@ SilverStripe\Core\Injector\Injector:
         - '%$FLXLabs\CmsMcp\Tools\VersionHistoryTool'
         - '%$FLXLabs\CmsMcp\Tools\RollbackRecordTool'
         - '%$FLXLabs\CmsMcp\Tools\RecordStatusTool'
+        - '%$FLXLabs\CmsMcp\Tools\CreateRecordTool'
+        - '%$FLXLabs\CmsMcp\Tools\RemoveManyManyTool'
+        - '%$FLXLabs\CmsMcp\Tools\AddManyManyFilesTool'
+        - '%$FLXLabs\CmsMcp\Tools\UploadFileFromUrlTool'
+        - '%$FLXLabs\CmsMcp\Tools\MoveFileTool'
+        - '%$FLXLabs\CmsMcp\Tools\RenameFileTool'
+        - '%$FLXLabs\CmsMcp\Tools\ListRecordIdsTool'
+        - '%$FLXLabs\CmsMcp\Tools\SearchByRelationTool'
 
 FLXLabs\CmsMcp\ClassExposure:
   # DataObject classes (and their subclasses) that may be exposed via MCP tools.
