@@ -91,7 +91,11 @@ class CreateRecordTool extends AbstractTool
                     $record->setField($name, $this->castValue($editable[$name]['type'], $value));
                 }
 
-                $record->writeToStage(Versioned::DRAFT);
+                if ($record->hasExtension(Versioned::class)) {
+                    $record->writeToStage(Versioned::DRAFT);
+                } else {
+                    $record->write();
+                }
 
                 return $this->jsonResult([
                     'class' => $class,

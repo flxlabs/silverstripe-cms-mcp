@@ -103,7 +103,11 @@ class RemoveManyManyTool extends AbstractTool
             $removed[] = $itemId;
         }
 
-        $record->writeToStage(Versioned::DRAFT);
+        if ($record->hasExtension(Versioned::class)) {
+            $record->writeToStage(Versioned::DRAFT);
+        } else {
+            $record->write();
+        }
 
         return $this->jsonResult([
             'class' => $class,

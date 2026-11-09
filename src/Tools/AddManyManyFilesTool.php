@@ -118,7 +118,11 @@ class AddManyManyFilesTool extends AbstractTool
             $added[] = $fileId;
         }
 
-        $record->writeToStage(Versioned::DRAFT);
+        if ($record->hasExtension(Versioned::class)) {
+            $record->writeToStage(Versioned::DRAFT);
+        } else {
+            $record->write();
+        }
 
         return $this->jsonResult([
             'class' => $class,
