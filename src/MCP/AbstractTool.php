@@ -11,13 +11,13 @@ abstract class AbstractTool implements Tool
 {
     use Configurable;
     // Lazy-load subsite classes only if the module is installed
-    private const SUBSITE_MODEL = 'SilverStripe\\Subsites\\Model\\Subsite';
-    private const SUBSITE_STATE = 'SilverStripe\\Subsites\\State\\SubsiteState';
+    protected const SUBSITE_MODEL = 'SilverStripe\\Subsites\\Model\\Subsite';
+    protected const SUBSITE_STATE = 'SilverStripe\\Subsites\\State\\SubsiteState';
 
     // Lazy-load fluent classes only if the module is installed
-    private const FLUENT_EXTENSION = 'TractorCow\\Fluent\\Extension\\FluentExtension';
-    private const FLUENT_LOCALE = 'TractorCow\\Fluent\\Model\\Locale';
-    private const FLUENT_STATE = 'TractorCow\\Fluent\\State\\FluentState';
+    protected const FLUENT_EXTENSION = 'TractorCow\\Fluent\\Extension\\FluentExtension';
+    protected const FLUENT_LOCALE = 'TractorCow\\Fluent\\Model\\Locale';
+    protected const FLUENT_STATE = 'TractorCow\\Fluent\\State\\FluentState';
     protected function classExposure(): ClassExposure
     {
         return ClassExposure::singleton();
