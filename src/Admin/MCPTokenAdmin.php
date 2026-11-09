@@ -11,7 +11,7 @@ class MCPTokenAdmin extends ModelAdmin
 
     private static string $menu_title = 'MCP Tokens';
 
-    private static string $menu_icon_class = 'font-icon-key';
+    private static string $menu_icon_class = 'font-icon-lock';
 
     private static array $managed_models = [
         MCPAccessToken::class,
