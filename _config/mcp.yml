@@ -24,7 +24,7 @@ SilverStripe\Core\Injector\Injector:
         - '%$FLXLabs\CmsMcp\Tools\RenameFileTool'
         - '%$FLXLabs\CmsMcp\Tools\ListRecordIdsTool'
         - '%$FLXLabs\CmsMcp\Tools\SearchByRelationTool'
-        - '%$FLXLabs\CMSMcp\Tools\CreateTranslationTool'
+        - '%$FLXLabs\CmsMcp\Tools\CreateTranslationTool'
 
 FLXLabs\CmsMcp\ClassExposure:
   # DataObject classes (and their subclasses) that may be exposed via MCP tools.
