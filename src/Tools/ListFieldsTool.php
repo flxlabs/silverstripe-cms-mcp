@@ -17,7 +17,9 @@ class ListFieldsTool extends AbstractTool
     {
         return 'Describe the writable fields on a class: text/html/number/boolean/date fields '
             . '(editable via update_record) and File/Image relations (settable via upload_file). '
-            . 'Call this before update_record so you know valid field names and types.';
+            . 'Also includes read-only relation metadata (has_one, has_many, many_many, '
+            . 'belongs_many_many with target classes) as "relations" — these are not writable '
+            . 'via update_record. Call this before update_record so you know valid field names and types.';
     }
 
     public function getInputSchema(): array
@@ -40,6 +42,7 @@ class ListFieldsTool extends AbstractTool
             'class' => $class,
             'editableFields' => array_values($introspector->describeEditableFields($class)),
             'fileFields' => array_values($introspector->describeFileFields($class)),
+            'relations' => $introspector->describeRelations($class),
         ]);
     }
 }
