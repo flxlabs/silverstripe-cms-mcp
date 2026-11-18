@@ -140,7 +140,9 @@ class MCPAccessToken extends DataObject
         if (!$this->TokenHash) {
             $raw = static::generateRawToken();
             $this->TokenHash = static::hashToken($raw);
-            $this->TokenPrefix = substr($raw, 0, 12) . '…';
+            // TokenPrefix is a Varchar(12): keep the whole value (prefix +
+            // ellipsis) within that length.
+            $this->TokenPrefix = substr($raw, 0, 11) . '…';
             $this->pendingRawToken = $raw;
         }
     }
