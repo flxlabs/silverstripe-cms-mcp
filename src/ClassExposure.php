@@ -52,6 +52,32 @@ class ClassExposure
     }
 
     /**
+     * Find DataObject subclasses whose short name (the part after the last
+     * namespace separator) matches $shortName. Used to resolve short class names
+     * like "Image" to "SilverStripe\Assets\Image" when the class argument does
+     * not resolve as a fully qualified name. Returns an empty array when
+     * $shortName is itself a valid class name.
+     *
+     * @return string[]
+     */
+    public function shortNameCandidates(string $shortName): array
+    {
+        if (class_exists($shortName)) {
+            return [];
+        }
+
+        $candidates = [];
+        foreach (ClassInfo::subclassesFor(DataObject::class, false) as $candidate) {
+            if (substr($candidate, strrpos($candidate, '\\') + 1) === $shortName) {
+                $candidates[] = $candidate;
+            }
+        }
+        sort($candidates);
+
+        return $candidates;
+    }
+
+    /**
      * @return string[] All concrete DataObject subclasses currently exposable via MCP.
      */
     public function getExposableClasses(): array

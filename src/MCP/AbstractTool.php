@@ -73,6 +73,20 @@ abstract class AbstractTool implements Tool
     {
         $class = $this->requireString($arguments, 'class');
 
+        // Resolve short names ("Image" -> "SilverStripe\Assets\Image") so callers
+        // don't need to know which classes live in a namespace.
+        if (!class_exists($class)) {
+            $candidates = $this->classExposure()->shortNameCandidates($class);
+            if (count($candidates) === 1) {
+                $class = $candidates[0];
+            } elseif (count($candidates) > 1) {
+                throw new ToolException(
+                    "Class name \"$class\" is ambiguous. Use the full class name: "
+                        . implode(' or ', $candidates)
+                );
+            }
+        }
+
         if (!$this->classExposure()->isExposable($class)) {
             throw new ToolException(
                 "Class \"$class\" is not exposed via MCP. Call list_classes to see what's available."

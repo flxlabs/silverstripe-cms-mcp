@@ -25,9 +25,11 @@ class UploadFileFromUrlTool extends AbstractTool
 
     public function getDescription(): string
     {
-        return 'Download a file from a URL and create a File or Image record in the SilverStripe '
-            . 'asset store. Returns the ID of the created record. The file is written to the draft '
-            . 'stage only — call publish_record on any owning record to make it visible on the live site.';
+        return 'Download a file from a URL and create a NEW File or Image record in the SilverStripe '
+            . 'asset store. Use only when the asset is NOT in the CMS yet — if the file already '
+            . 'exists, link it instead (link_file / add_many_many_files). Returns the ID of the '
+            . 'created record. The file is written to the draft stage only — call publish_record on '
+            . 'any owning record to make it visible on the live site.';
     }
 
     public function getInputSchema(): array

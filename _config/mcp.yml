@@ -19,6 +19,7 @@ SilverStripe\Core\Injector\Injector:
         - '%$FLXLabs\CmsMcp\Tools\CreateRecordTool'
         - '%$FLXLabs\CmsMcp\Tools\RemoveManyManyTool'
         - '%$FLXLabs\CmsMcp\Tools\AddManyManyFilesTool'
+        - '%$FLXLabs\CmsMcp\Tools\LinkFileTool'
         - '%$FLXLabs\CmsMcp\Tools\UploadFileFromUrlTool'
         - '%$FLXLabs\CmsMcp\Tools\MoveFileTool'
         - '%$FLXLabs\CmsMcp\Tools\RenameFileTool'

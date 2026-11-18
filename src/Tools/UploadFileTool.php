@@ -23,8 +23,10 @@ class UploadFileTool extends AbstractTool
 
     public function getDescription(): string
     {
-        return 'Upload a file and attach it to a File/Image relation field on a record '
-            . '(discover valid field names via list_fields). Content must be base64-encoded. '
+        return 'Upload a NEW file and attach it to a has_one File/Image field on a record '
+            . '(discover valid field names via list_fields). Use only when the asset is NOT in the '
+            . 'CMS yet — if the file already exists, link it instead: link_file (has_one fields) '
+            . 'or add_many_many_files (many_many relations). Content must be base64-encoded. '
             . 'The upload is written to the draft stage only — call publish_record on the '
             . 'record afterwards to make it, and any owned files, visible on the live site.';
     }

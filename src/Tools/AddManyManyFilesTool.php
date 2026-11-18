@@ -18,11 +18,13 @@ class AddManyManyFilesTool extends AbstractTool
 
     public function getDescription(): string
     {
-        return 'Add existing File or Image records to a many_many relation on any MCP-exposed class. '
-            . 'Pass the class name (from list_classes), record ID, relation name (e.g. "Images", '
-            . '"AdditionalSchemes", "Downloads"), and an array of file/image IDs. Only files the '
-            . 'acting member can view are added. Writes to the draft stage only — call publish_record '
-            . 'to make changes live.';
+        return 'Add EXISTING File or Image records to a many_many relation on any MCP-exposed class. '
+            . 'Use this instead of re-uploading when the asset is already in the CMS. Pass the class '
+            . 'name (from list_classes), record ID, relation name (e.g. "Images", "AdditionalSchemes", '
+            . '"Downloads"), and an array of file/image IDs. Find existing file IDs via search_records '
+            . '(class "SilverStripe\\Assets\\Image" or "SilverStripe\\Assets\\File", query = filename '
+            . 'fragment). Only files the acting member can view are added. Writes to the draft stage '
+            . 'only — call publish_record to make changes live.';
     }
 
     public function getInputSchema(): array

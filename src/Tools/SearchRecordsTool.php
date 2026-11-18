@@ -2,6 +2,7 @@
 
 namespace FLXLabs\CmsMcp\Tools;
 
+use SilverStripe\Assets\File;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\Versioned;
@@ -20,9 +21,11 @@ class SearchRecordsTool extends AbstractTool
     public function getDescription(): string
     {
         return 'Search/list records of a class. Optionally filter by a case-insensitive '
-            . 'substring match against a specific field (e.g. Title). Results only include '
-            . 'records the acting member can view, and only their id/title/summary fields — '
-            . 'call get_record for full field values.';
+            . 'substring match against a specific field (e.g. Title). For File/Image classes '
+            . 'searches the filename (Name) by default — use it to find existing assets, e.g. '
+            . 'class "SilverStripe\\Assets\\Image" (or the short name "Image") and query a '
+            . 'filename fragment. Results only include records the acting member can view, '
+            . 'and only their id/title/summary fields — call get_record for full field values.';
     }
 
     public function getInputSchema(): array
@@ -34,7 +37,8 @@ class SearchRecordsTool extends AbstractTool
                 'query' => ['type' => 'string', 'description' => 'Optional substring to search for'],
                 'field' => [
                     'type' => 'string',
-                    'description' => 'Field to search "query" against. Defaults to Title.',
+                    'description' => 'Field to search "query" against. Defaults to Title, '
+                        . 'or to Name (the filename) for File/Image classes.',
                 ],
                 'limit' => [
                     'type' => 'integer',
@@ -48,7 +52,10 @@ class SearchRecordsTool extends AbstractTool
     public function call(array $arguments, Member $actingMember): array
     {
         $class = $this->requireExposableClass($arguments);
-        $field = is_string($arguments['field'] ?? null) ? $arguments['field'] : 'Title';
+        // Asset records are referred to by their filename (Name); their Title is
+        // often empty, so default File/Image searches to Name.
+        $defaultField = (is_subclass_of($class, File::class)) ? 'Name' : 'Title';
+        $field = is_string($arguments['field'] ?? null) ? $arguments['field'] : $defaultField;
         $query = is_string($arguments['query'] ?? null) ? $arguments['query'] : null;
         $limit = min(self::MAX_LIMIT, max(1, (int) ($arguments['limit'] ?? 20)));
 

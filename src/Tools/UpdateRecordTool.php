@@ -18,9 +18,10 @@ class UpdateRecordTool extends AbstractTool
     public function getDescription(): string
     {
         return 'Update one or more text/html/number/boolean/date fields on a record. Only '
-            . 'fields returned by list_fields\'s editableFields may be set — File/Image '
-            . 'fields must go through upload_file instead. Writes to the draft stage only; '
-            . 'call publish_record to make the change live.';
+            . 'fields returned by list_fields\'s editableFields may be set. File/Image has_one '
+            . 'fields are NOT editable here — link an existing asset with link_file, create a '
+            . 'new one with upload_file, or for many_many file relations use add_many_many_files. '
+            . 'Writes to the draft stage only; call publish_record to make the change live.';
     }
 
     public function getInputSchema(): array
@@ -55,10 +56,19 @@ class UpdateRecordTool extends AbstractTool
         $editable = FieldIntrospector::singleton()->describeEditableFields($class);
         $invalid = array_diff(array_keys($arguments['fields']), array_keys($editable));
         if ($invalid) {
-            throw new ToolException(
-                'Not editable via update_record: ' . implode(', ', $invalid)
-                    . '. Call list_fields to see valid fields.'
-            );
+            $hints = [];
+            $fileFields = FieldIntrospector::singleton()->describeFileFields($class);
+            foreach ($invalid as $name) {
+                if (isset($fileFields[$name])) {
+                    $hints[] = "\"$name\" is a has_one File/Image field — use link_file (existing asset) or upload_file (new asset)";
+                }
+            }
+            $message = 'Not editable via update_record: ' . implode(', ', $invalid)
+                . '. Call list_fields to see valid fields.';
+            if ($hints) {
+                $message .= ' ' . implode(' ', $hints) . '.';
+            }
+            throw new ToolException($message);
         }
 
         foreach ($arguments['fields'] as $name => $value) {

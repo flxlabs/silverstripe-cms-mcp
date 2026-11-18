@@ -2,6 +2,7 @@
 
 namespace FLXLabs\CmsMcp\Tools;
 
+use SilverStripe\Assets\File;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
 use FLXLabs\CmsMcp\MCP\AbstractTool;
@@ -59,7 +60,11 @@ class ListRecordIdsTool extends AbstractTool
                     if (!$record->canView($actingMember)) {
                         continue;
                     }
-                    $ids[] = ['id' => $record->ID, 'Title' => (string) $record->Title];
+                    $row = ['id' => $record->ID, 'Title' => (string) $record->Title];
+                    if ($record instanceof File) {
+                        $row['Name'] = $record->Name;
+                    }
+                    $ids[] = $row;
                 }
 
                 return $this->jsonResult([
