@@ -58,9 +58,12 @@ class CreateTranslationTool extends AbstractTool
         $locale = $this->requireString($arguments, 'locale');
         $subsiteId = isset($arguments['subsiteId']) ? (int) $arguments['subsiteId'] : null;
 
-        // The class must be Fluent-localized
+        // The class must be Fluent-localized.
+        // NB: self::FLUENT_EXTENSION is a string constant holding a class name —
+        // PHP cannot apply ::class to a constant, so use the constant directly.
+        $fluentExtension = self::FLUENT_EXTENSION;
         $singleton = DataObject::singleton($class);
-        if (!class_exists(self::FLUENT_EXTENSION::class) || !$singleton->hasExtension(self::FLUENT_EXTENSION::class)) {
+        if (!class_exists($fluentExtension) || !$singleton->hasExtension($fluentExtension)) {
             throw new ToolException(
                 "$class is not a Fluent-localized class. create_translation only works on classes "
                     . 'with FluentExtension or FluentVersionedExtension.'
