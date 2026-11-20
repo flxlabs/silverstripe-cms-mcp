@@ -16,6 +16,7 @@ abstract class AbstractTool implements Tool
 
     // Lazy-load fluent classes only if the module is installed
     protected const FLUENT_EXTENSION = 'TractorCow\\Fluent\\Extension\\FluentExtension';
+    protected const FLUENT_VERSIONED_EXTENSION = 'TractorCow\\Fluent\\Extension\\FluentVersionedExtension';
     protected const FLUENT_LOCALE = 'TractorCow\\Fluent\\Model\\Locale';
     protected const FLUENT_STATE = 'TractorCow\\Fluent\\State\\FluentState';
     protected function classExposure(): ClassExposure
@@ -139,6 +140,44 @@ abstract class AbstractTool implements Tool
             $state->setLocale($locale);
             return $callback();
         });
+    }
+
+    /**
+     * Check whether a class uses Fluent's versioned localisation.
+     */
+    protected function isFluentVersioned(string $class): bool
+    {
+        $extension = self::FLUENT_VERSIONED_EXTENSION;
+
+        return class_exists($extension) && DataObject::singleton($class)->hasExtension($extension);
+    }
+
+    /**
+     * Resolve an optional locale code to a concrete locale.
+     * Defaults to the global default Fluent locale when none is given.
+     */
+    protected function resolveLocale(?string $requestedLocale): string
+    {
+        $localeClass = self::FLUENT_LOCALE;
+
+        if ($requestedLocale !== null) {
+            $exists = $localeClass::get()->filter('Locale', $requestedLocale)->exists();
+            if (!$exists) {
+                $available = $localeClass::get()->column('Locale');
+                throw new ToolException(
+                    "Locale \"$requestedLocale\" not found. Available locales: " . implode(', ', $available)
+                );
+            }
+
+            return $requestedLocale;
+        }
+
+        $default = $localeClass::getDefault();
+        if (!$default) {
+            throw new ToolException('No default Fluent locale is configured.');
+        }
+
+        return $default->Locale;
     }
 
     /**
